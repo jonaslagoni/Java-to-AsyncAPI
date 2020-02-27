@@ -11,8 +11,12 @@ package com.asyncapi.internal_dsl.builder;
  */
 public class ChannelBuilder {
     public OperationBuilder publish(){
-        
+        return null;
     }
-    public OperationBuilder subscribe(){}
-    public ChannelBuilder summary(String summaryInformation){}
+    public OperationBuilder subscribe(){
+        return null;
+    }
+    public ChannelBuilder summary(String summaryInformation){
+        return null;
+    }
 }

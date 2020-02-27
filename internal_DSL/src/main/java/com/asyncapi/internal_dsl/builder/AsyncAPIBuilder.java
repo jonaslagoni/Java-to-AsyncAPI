@@ -11,16 +11,16 @@ package com.asyncapi.internal_dsl.builder;
  */
 public class AsyncAPIBuilder{
     public CrudBuilder crud(String baseChannelName){
-        
+        return null;
     }
     public ChannelBuilder channel(String channel){
-        
+        return null;
     }
     public ServerBuilder server(String server){
-        
+        return null;
     }
     public InfoBuilder info(){
-        
+        return null;
     }
     
 }

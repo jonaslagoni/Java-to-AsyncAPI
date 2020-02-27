@@ -24,7 +24,6 @@ public class AsyncAPI {
         /**
          * @return the asyncapiVersion
          */
-        @JsonValue
         public String getAsyncapiVersion() {
             return asyncapiVersion;
         }
