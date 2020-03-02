@@ -22,30 +22,64 @@ public class MessageBuilder {
         this.message = message;
     }
 
+    /**
+     * Set the name for this message
+     * 
+     * @param name to set
+     * @return this MessageBuilder instance
+     */
     public MessageBuilder name(String name) {
         message.setName(name);
         return this;
     }
 
+    /**
+     * Set the title for this message
+     * 
+     * @param title to set
+     * @return this MessageBuilder instance
+     */
     public MessageBuilder title(String title) {
         message.setTitle(title);
         return this;
     }
 
+    /**
+     * Set the summary for this message
+     * 
+     * @param summary to set
+     * @return this MessageBuilder instance
+     */
     public MessageBuilder summary(String summary) {
         message.setSummary(summary);
         return this;
     }
 
+    /**
+     * Set the description for this message
+     * 
+     * @param description to set
+     * @return this MessageBuilder instance
+     */
     public MessageBuilder description(String description) {
         message.setDescription(description);
         return this;
     }
 
+    /**
+     * Start building the payload using the JSON Schema builder.
+     * 
+     * @return MessageJsonSchemaBuilder 
+     */
     public MessageJsonSchemaBuilder payload() {
         return new MessageJsonSchemaBuilder(this, message);
     }
 
+    /**
+     * Return to the parent OperationBuilder
+     * 
+     * @return parent OperationBuilder instance
+     */
     public OperationBuilder parent() {
         return parent;
     }

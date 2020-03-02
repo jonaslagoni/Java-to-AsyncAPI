@@ -23,6 +23,11 @@ public class MessageJsonSchemaBuilder extends JsonSchemaBuilder<MessageJsonSchem
         this.message = message;
     }
 
+    /**
+     * Return to the parent MessageBuilder instance.
+     * 
+     * @return parent MessageBuilder instance.
+     */
     public MessageBuilder messageParent() {
         message.setPayload(this.build());
         return parent;

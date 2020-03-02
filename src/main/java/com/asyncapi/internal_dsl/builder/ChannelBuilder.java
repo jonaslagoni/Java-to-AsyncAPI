@@ -26,8 +26,8 @@ public class ChannelBuilder {
     /**
      * Set the description for this channel.
      * 
-     * @param description the string to use as description
-     * @return the same instance of ChannelBuilder.
+     * @param description to set
+     * @return this ChannelBuilder instance
      */
     public ChannelBuilder description(String description) {
         channel.setDescription(description);
@@ -64,7 +64,8 @@ public class ChannelBuilder {
 
     /**
      * Return to the parent AsyncAPIBuilder
-     * @return AsyncAPIBuilder
+     * 
+     * @return parent AsyncAPIBuilder instance
      */
     public AsyncAPIBuilder parent() {
         return parent;

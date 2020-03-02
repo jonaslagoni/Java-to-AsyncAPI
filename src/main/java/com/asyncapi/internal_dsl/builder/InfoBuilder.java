@@ -23,16 +23,35 @@ public class InfoBuilder {
         this.info = info;
     }
 
+    /**
+     * Set the title for this info
+     * 
+     * @param title to set
+     * @return this InfoBuilder instance
+     */
     public InfoBuilder title(String title) {
         info.setTitle(title);
         return this;
     }
 
+    /**
+     * Set the version for this info
+     * 
+     * @param version to set
+     * @return this InfoBuilder instance
+     */
     public InfoBuilder version(String version) {
         info.setVersion(version);
         return this;
     }
 
+    
+    /**
+     * Set the description for this info
+     * 
+     * @param description to set
+     * @return this InfoBuilder instance
+     */
     public InfoBuilder description(String description) {
         info.setDescription(description);
         return this;
@@ -53,6 +72,12 @@ public class InfoBuilder {
         }
         return new LicenseBuilder(this, licenseInstance);
     }
+    
+    /**
+     * Return to the parent AsyncAPIBuilder
+     * 
+     * @return parent AsyncAPIBuilder instance
+     */
     public AsyncAPIBuilder parent() {
         return parent;
     }

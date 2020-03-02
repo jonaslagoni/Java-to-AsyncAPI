@@ -22,16 +22,33 @@ public class LicenseBuilder {
         this.parent = parent;
     }
 
+    /**
+     * Set the name for this license
+     * 
+     * @param name to set
+     * @return this LicenseBuilder instance
+     */
     public LicenseBuilder name(String name) {
         license.setName(name);
         return this;
     }
 
+    /**
+     * Set the url for this license
+     * 
+     * @param url to set
+     * @return this LicenseBuilder instance
+     */
     public LicenseBuilder url(String url) {
         license.setUrl(url);
         return this;
     }
-
+    
+    /**
+     * Return to the parent InfoBuilder
+     * 
+     * @return parent InfoBuilder instance
+     */
     public InfoBuilder parent() {
         return parent;
     }

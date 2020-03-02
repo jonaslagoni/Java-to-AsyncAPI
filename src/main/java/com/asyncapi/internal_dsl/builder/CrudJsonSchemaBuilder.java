@@ -21,6 +21,11 @@ public class CrudJsonSchemaBuilder extends JsonSchemaBuilder<CrudJsonSchemaBuild
         this.parent = parent;
     }
 
+    /**
+     * Return to the parent CrudBuilder instance.
+     * 
+     * @return parent CrudBuilder instance.
+     */
     public CrudBuilder crudParent() {
         return parent;
     }

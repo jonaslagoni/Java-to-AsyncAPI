@@ -34,16 +34,29 @@ public class CrudBuilder {
         this.baseChannelName = channelName;
     }
 
-    public CrudJsonSchemaBuilder parameter(String propertyName) {
-        if(parameters.containsKey(propertyName)){
-            return parameters.get(propertyName);
+    /**
+     * Adds a parameter to the CRUD base channel i.e. "id" -> baseChannelName/{id}
+     * 
+     * This method can be called as many times as you want.
+     * 
+     * @param parameterName name of the parameter.
+     * @return CrudJsonSchemaBuilder 
+     */
+    public CrudJsonSchemaBuilder parameter(String parameterName) {
+        if(parameters.containsKey(parameterName)){
+            return parameters.get(parameterName);
         }else{
             CrudJsonSchemaBuilder builder = new CrudJsonSchemaBuilder(this);
-            parameters.put(propertyName, builder);
+            parameters.put(parameterName, builder);
             return builder;
         }
     }
 
+    /**
+     * Start building the payload for the CRUD i.e. a user.
+     * 
+     * @return CrudJsonSchemaBuilder
+     */
     public CrudJsonSchemaBuilder body() {
         if(body == null){
             body = new CrudJsonSchemaBuilder(this);
@@ -52,16 +65,33 @@ public class CrudBuilder {
     }
     
 
+    /**
+     * Should the CRUD be reversed i.e. switch from "server" point of view to "client".
+     * 
+     * @param reverse should be reversed
+     * @return this CrudBuilder instance
+     */
     public CrudBuilder reverse(boolean reverse) {
         this.reverse = reverse;
         return this;
     }
 
+    /**
+     * Return to the parent AsyncAPIBuilder
+     * 
+     * @return parent AsyncAPIBuilder instance
+     */
     public AsyncAPIBuilder parent() {
         finishCrud();
         return parent;
     }
     
+    /**
+     * Set whether or not the body should be included in all the operations.
+     * 
+     * @param informed should the body object be included
+     * @return this CrudBuilder instance
+     */
     public CrudBuilder informed(boolean informed){
         this.informed = informed;
         return this;

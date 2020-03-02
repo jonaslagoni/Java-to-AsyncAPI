@@ -23,20 +23,33 @@ public class OperationBuilder {
         this.operation = operation;
     }
 
+    /**
+     * Set the summary for this operation.
+     * 
+     * @param summary to set
+     * @return this OperationBuilder instance
+     */
     public OperationBuilder summary(String summary) {
         operation.setSummary(summary);
         return this;
     }
 
+    /**
+     * Set the description for this operation.
+     * 
+     * @param description to set
+     * @return this OperationBuilder instance
+     */
     public OperationBuilder description(String description) {
         operation.setDescription(description);
         return this;
     }
 
     /**
-     * Set the 
-     * @param operationId
-     * @return 
+     * Set the operation id for this operation.
+     * 
+     * @param operationId to set
+     * @return this OperationBuilder instance
      */
     public OperationBuilder operationId(String operationId) {
         operation.setOperationId(operationId);
