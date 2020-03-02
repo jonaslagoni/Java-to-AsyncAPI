@@ -1,4 +1,4 @@
-# Async-api-InternalDSL
+# Java-to-AsyncAPI
 The AsyncAPI internal DSL utilizes the [internal DSL for JSON Schema](https://github.com/jonaslagoni/Java-to-JSON-Schema) and is needed to compile this library. It is used for the payload and parameters. 
 
 The only supported AsyncAPI version is [2.0.0](https://www.asyncapi.com/docs/specifications/2.0.0/).
