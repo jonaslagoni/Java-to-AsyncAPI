@@ -5,8 +5,10 @@
  */
 package com.asyncapi.internal_dsl;
 
-import com.asyncapi.internal_dsl.model.implementation.AsyncAPIBuilder;
-import com.asyncapi.internal_dsl.builder.JsonSchemaPropertyBuilder;
+import com.asyncapi.internal_dsl.builder.AsyncAPIBuilder;
+import com.asyncapi.internal_dsl.model.AsyncAPI;
+import com.json_schema.builder.model.draft7.SimpleType;
+import com.json_schema.builder.model.draft7.StringFormat;
 
 /**
  *
@@ -19,35 +21,33 @@ public class Initial {
      */
     public static void main(String[] args) {
         // TODO code application logic here'
-        new AsyncAPIBuilder().
-            info().
+        AsyncAPI api = new AsyncAPIBuilder().
+                info().
                 title("Streetlights API").
                 version("1.0.0").
-                description("The Smartylighting Streetlights API allows you to remotely manage the city lights.").
+                description("The Smartylighting Streetlights API allows you to remotely manage the city lights.").parent().
                 license().
-                    name("Apache 2.0").
-                    url("https://www.apache.org/licenses/LICENSE-2.0").
-            server("mosquitto").
+                name("Apache 2.0").
+                url("https://www.apache.org/licenses/LICENSE-2.0").parent().
+                server("mosquitto").
                 url("mqtt://test.mosquitto.org").
-                protocol("mqtt").
-            channel("light/measured").
+                protocol("mqtt").parent().
+                channel("light/measured").
                 publish().
-                    summary("Inform about environmental lighting conditions for a particular streetlight.").
-                    operationId("onLightMeasured").
-                    payload().
-                        object().
-                            property("id").
-                                type(JsonSchemaPropertyBuilder.PropertyType.String).
-                                minimum(0).
-                                description("Id of the streetlight.").
-                            property("lumens").
-                                type(JsonSchemaPropertyBuilder.PropertyType.Integers).
-                                minimum(0).
-                                description("Light intensity measured in lumens.").
-                            property("sentAt").
-                                type(JsonSchemaPropertyBuilder.PropertyType.String).
-                                format("date-time").
-                                description("Date and time when the message was sent.");
+                summary("Inform about environmental lighting conditions for a particular streetlight.").
+                operationId("onLightMeasured").
+                message().
+                payload().
+                object().
+                property("id", SimpleType.INTEGER).
+                minimum(0).
+                description("Id of the streetlight.").parent().
+                property("lumens", SimpleType.INTEGER).
+                minimum(0).
+                description("Light intensity measured in lumens.").parent().
+                property("sentAt", SimpleType.STRING).
+                format(StringFormat.DATE_TIME).
+                description("Date and time when the message was sent.").finish();
     }
-    
+
 }

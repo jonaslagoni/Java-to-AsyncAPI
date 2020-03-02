@@ -6,38 +6,33 @@
 package com.asyncapi.internal_dsl.builder;
 
 import com.asyncapi.internal_dsl.model.AsyncAPI;
+import com.json_schema.builder.draft7.JsonSchemaBuilder;
+import com.json_schema.builder.model.draft7.Schema;
 
 /**
  *
  * @author Lagoni
  */
-public class CrudBuilder {
+public class CrudJsonSchemaBuilder extends JsonSchemaBuilder<CrudJsonSchemaBuilder> {
 
-    private AsyncAPIBuilder parent;
+    private CrudBuilder parent;
     private AsyncAPI root;
 
-    public CrudBuilder(AsyncAPIBuilder instance, AsyncAPI root) {
-        this.parent = instance;
+    public CrudJsonSchemaBuilder(CrudBuilder parent, AsyncAPI root) {
+        this.parent = parent;
         this.root = root;
     }
 
-    public CrudJsonSchemaBuilder keyProperty(String propertyName) {
+    public CrudBuilder crudParent() {
+        Schema rootSchema = this.build();
 
-    }
-
-    public CrudJsonSchemaBuilder property(String propertyName) {
-
-    }
-
-    public CrudBuilder reverse() {
-        return this;
-    }
-
-    public AsyncAPIBuilder parent() {
         return parent;
     }
 
     public AsyncAPI finish() {
+        Schema rootSchema = this.build();
+
         return parent.finish();
     }
+
 }

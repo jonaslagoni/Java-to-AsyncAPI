@@ -5,18 +5,50 @@
  */
 package com.asyncapi.internal_dsl.builder;
 
+import com.asyncapi.internal_dsl.model.AsyncAPI;
+import com.asyncapi.internal_dsl.model.Channel;
+import com.asyncapi.internal_dsl.model.Operation;
+
 /**
  *
- * @author lagoni
+ * @author Lagoni
  */
 public class ChannelBuilder {
-    public OperationBuilder publish(){
-        return null;
+
+    private AsyncAPIBuilder parent;
+    private Channel channel;
+
+    public ChannelBuilder(AsyncAPIBuilder instance, Channel channel) {
+        this.parent = instance;
+        this.channel = channel;
     }
-    public OperationBuilder subscribe(){
-        return null;
+
+    public ChannelBuilder description(String description) {
+        channel.setDescription(description);
+        return this;
     }
-    public ChannelBuilder summary(String summaryInformation){
-        return null;
+
+    public OperationBuilder subscribe() {
+        Operation newOperation = channel.getSubscribe();
+        if (newOperation == null) {
+            newOperation = new Operation();
+        }
+        return new OperationBuilder(this, newOperation);
+    }
+
+    public OperationBuilder publish() {
+        Operation newOperation = channel.getPublish();
+        if (newOperation == null) {
+            newOperation = new Operation();
+        }
+        return new OperationBuilder(this, newOperation);
+    }
+
+    public AsyncAPIBuilder parent() {
+        return parent;
+    }
+
+    public AsyncAPI finish() {
+        return parent.finish();
     }
 }

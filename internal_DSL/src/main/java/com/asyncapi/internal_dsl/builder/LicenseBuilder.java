@@ -6,34 +6,28 @@
 package com.asyncapi.internal_dsl.builder;
 
 import com.asyncapi.internal_dsl.model.AsyncAPI;
-import com.asyncapi.internal_dsl.model.Info;
+import com.asyncapi.internal_dsl.model.License;
 
 /**
  *
- * @author lagoni
+ * @author Lagoni
  */
-public class InfoBuilder {
+public class LicenseBuilder {
 
+    private License license;
     private AsyncAPIBuilder parent;
-    private Info info;
 
-    public InfoBuilder(AsyncAPIBuilder instance, Info info) {
-        this.parent = instance;
-        this.info = info;
+    public LicenseBuilder(AsyncAPIBuilder parent, License license) {
+        this.license = license;
     }
 
-    public InfoBuilder title(String title) {
-        info.setTitle(title);
+    public LicenseBuilder name(String name) {
+        license.setName(name);
         return this;
     }
 
-    public InfoBuilder version(String version) {
-        info.setVersion(version);
-        return this;
-    }
-
-    public InfoBuilder description(String description) {
-        info.setDescription(description);
+    public LicenseBuilder url(String url) {
+        license.setUrl(url);
         return this;
     }
 
