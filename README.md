@@ -216,7 +216,7 @@ new AsyncAPIBuilder().
 Certain abstractions are implemented to ease the use of the builder.
 
 ### CRUD
-Using the abstract CRUD builder you are able to create an AsyncAPI file using very few lines of code. The CRUD builder is taking the "server" point of view as default, and the method `reverse(true)` can be used to take the "client" point of view.
+Using the abstract CRUD builder you are able to create an AsyncAPI file using very few lines of code. The CRUD builder is taking the "client" point of view as default (what you can subscribe and publish to the "server"), and the method `reverse(true)` can be used to take the "server" point of view i.e. creating the AsyncAPI document for who controls the CRUD operations.
 
 Using the following example defines CRUD operations for users:
 ```java
@@ -244,7 +244,7 @@ AsyncAPI api = new AsyncAPIBuilder().
                 description("The date-time the user joined.").crudParent().
         .finish();
 ```
-which would generate the following JSON:
+which would generate the following AsyncAPI JSON:
 
 ```json
 {
@@ -252,11 +252,11 @@ which would generate the following JSON:
    "info":{
       "title":"Streetlights API",
       "version":"1.0.0",
-      "description":"The Smartylighting Streetlights API allows you to remotely manage the city lights."
-   },
-   "license":{
-      "name":"Apache 2.0",
-      "url":"https://www.apache.org/licenses/LICENSE-2.0"
+      "description":"The Smartylighting Streetlights API allows you to remotely manage the city lights.",
+      "license":{
+         "name":"Apache 2.0",
+         "url":"https://www.apache.org/licenses/LICENSE-2.0"
+      }
    },
    "channels":{
       "user/{id}/read":{
@@ -275,15 +275,6 @@ which would generate the following JSON:
             "message":{
                "payload":{
                   "type":[
-                     "null"
-                  ]
-               }
-            }
-         },
-         "publish":{
-            "message":{
-               "payload":{
-                  "type":[
                      "object"
                   ],
                   "title":"user",
@@ -296,6 +287,15 @@ which would generate the following JSON:
                         "format":"date-time"
                      }
                   }
+               }
+            }
+         },
+         "publish":{
+            "message":{
+               "payload":{
+                  "type":[
+                     "null"
+                  ]
                }
             }
          }
@@ -312,7 +312,7 @@ which would generate the following JSON:
                }
             }
          },
-         "publish":{
+         "subscribe":{
             "message":{
                "payload":{
                   "type":[
@@ -334,7 +334,7 @@ which would generate the following JSON:
                }
             }
          },
-         "publish":{
+         "subscribe":{
             "message":{
                "payload":{
                   "type":[
@@ -356,7 +356,7 @@ which would generate the following JSON:
                }
             }
          },
-         "publish":{
+         "subscribe":{
             "message":{
                "payload":{
                   "type":[
@@ -377,7 +377,7 @@ which would generate the following JSON:
 ```
 
 ### Reversed CRUD
-Using the `reverse(true)` method you can easily create the reversed CRUD operations for any client.
+Using the `reverse(true)` method you can easily create the reversed CRUD operations.
 
 ```java
 AsyncAPI api = new AsyncAPIBuilder().
@@ -405,18 +405,18 @@ AsyncAPI api = new AsyncAPIBuilder().
         reverse(true).finish();
 ```
 
-Which would generate the following JSON:
+Which would generate the following AsyncAPI JSON:
 ```json
 {
    "asyncapi":"2.0.0",
    "info":{
       "title":"Streetlights API",
       "version":"1.0.0",
-      "description":"The Smartylighting Streetlights API allows you to remotely manage the city lights."
-   },
-   "license":{
-      "name":"Apache 2.0",
-      "url":"https://www.apache.org/licenses/LICENSE-2.0"
+      "description":"The Smartylighting Streetlights API allows you to remotely manage the city lights.",
+      "license":{
+         "name":"Apache 2.0",
+         "url":"https://www.apache.org/licenses/LICENSE-2.0"
+      }
    },
    "channels":{
       "user/{id}/read":{
@@ -476,8 +476,18 @@ Which would generate the following JSON:
             "message":{
                "payload":{
                   "type":[
-                     "null"
-                  ]
+                     "object"
+                  ],
+                  "title":"user",
+                  "properties":{
+                     "name":{
+                        "type":[
+                           "string"
+                        ],
+                        "description":"The date-time the user joined.",
+                        "format":"date-time"
+                     }
+                  }
                }
             }
          }
@@ -498,8 +508,18 @@ Which would generate the following JSON:
             "message":{
                "payload":{
                   "type":[
-                     "null"
-                  ]
+                     "object"
+                  ],
+                  "title":"user",
+                  "properties":{
+                     "name":{
+                        "type":[
+                           "string"
+                        ],
+                        "description":"The date-time the user joined.",
+                        "format":"date-time"
+                     }
+                  }
                }
             }
          }
@@ -520,8 +540,18 @@ Which would generate the following JSON:
             "message":{
                "payload":{
                   "type":[
-                     "null"
-                  ]
+                     "object"
+                  ],
+                  "title":"user",
+                  "properties":{
+                     "name":{
+                        "type":[
+                           "string"
+                        ],
+                        "description":"The date-time the user joined.",
+                        "format":"date-time"
+                     }
+                  }
                }
             }
          }
