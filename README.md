@@ -43,7 +43,7 @@ AsyncAPI api = new AsyncAPIBuilder().
                                 description("Date and time when the message was sent.").finish();
 ```
 
-Which will generate the following JSON string:
+Which will generate the following AsyncAPI JSON:
 
 ```json
 {
