@@ -7,6 +7,7 @@ package com.asyncapi.internal_dsl.builder;
 
 import com.asyncapi.internal_dsl.model.AsyncAPI;
 import com.asyncapi.internal_dsl.model.Info;
+import com.asyncapi.internal_dsl.model.License;
 
 /**
  *
@@ -37,10 +38,30 @@ public class InfoBuilder {
         return this;
     }
 
+    /**
+     * Start building the license section
+     * 
+     * @return LicenseBuilder
+     */
+    public LicenseBuilder license() {
+        License licenseInstance;
+        if (info.getLicense() != null) {
+            licenseInstance = info.getLicense();
+        } else {
+            licenseInstance = new License();
+            info.setLicense(licenseInstance);
+        }
+        return new LicenseBuilder(this, licenseInstance);
+    }
     public AsyncAPIBuilder parent() {
         return parent;
     }
 
+    /**
+     * Finish the builder by returning the AsyncAPI object.
+     * 
+     * @return AsyncAPI
+     */
     public AsyncAPI finish() {
         return parent.finish();
     }

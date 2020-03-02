@@ -20,9 +20,13 @@ public class AsyncAPI {
 
     private Version asyncapi;
     private Info info;
-    private License license;
     private Map<String, Channel> channels;
     private Map<String, Server> servers;
+    
+    public AsyncAPI(){
+        asyncapi = Version.v2_0_0;
+        channels = new HashMap();
+    }
 
     public String toJson() throws JsonProcessingException {
         // Creating Object of ObjectMapper define in Jakson Api
@@ -79,24 +83,7 @@ public class AsyncAPI {
      * @param channel
      */
     public void addChannel(String channelName, Channel channel) {
-        if (this.channels == null) {
-            this.channels = new HashMap();
-        }
         this.channels.put(channelName, channel);
-    }
-
-    /**
-     * @return the license
-     */
-    public License getLicense() {
-        return license;
-    }
-
-    /**
-     * @param license the license to set
-     */
-    public void setLicense(License license) {
-        this.license = license;
     }
 
     /**

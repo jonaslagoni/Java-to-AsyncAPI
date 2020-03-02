@@ -17,7 +17,8 @@ public class Info {
     private String title;
     private String version;
     private String description;
-
+    private License license;
+    
     /**
      * @return the title
      */
@@ -58,5 +59,19 @@ public class Info {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * @return the license
+     */
+    public License getLicense() {
+        return license;
+    }
+
+    /**
+     * @param license the license to set
+     */
+    public void setLicense(License license) {
+        this.license = license;
     }
 }

@@ -15,9 +15,9 @@ import com.asyncapi.internal_dsl.model.License;
 public class LicenseBuilder {
 
     private License license;
-    private AsyncAPIBuilder parent;
+    private InfoBuilder parent;
 
-    public LicenseBuilder(AsyncAPIBuilder parent, License license) {
+    public LicenseBuilder(InfoBuilder parent, License license) {
         this.license = license;
         this.parent = parent;
     }
@@ -32,10 +32,15 @@ public class LicenseBuilder {
         return this;
     }
 
-    public AsyncAPIBuilder parent() {
+    public InfoBuilder parent() {
         return parent;
     }
 
+    /**
+     * Finish the builder by returning the AsyncAPI object.
+     * 
+     * @return AsyncAPI
+     */
     public AsyncAPI finish() {
         return parent.finish();
     }

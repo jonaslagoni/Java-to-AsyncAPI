@@ -26,10 +26,10 @@ public class CrudReverse {
                 info().
                 title("Streetlights API").
                 version("1.0.0").
-                description("The Smartylighting Streetlights API allows you to remotely manage the city lights.").parent().
                 license().
                 name("Apache 2.0").
                 url("https://www.apache.org/licenses/LICENSE-2.0").parent().
+                description("The Smartylighting Streetlights API allows you to remotely manage the city lights.").parent().
                 server("mosquitto").
                 url("mqtt://test.mosquitto.org").
                 protocol("mqtt").parent().

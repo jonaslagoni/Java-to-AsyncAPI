@@ -74,6 +74,12 @@ public class CrudBuilder {
         root.addChannel(trueChannelName + "/removed", generateBaseChannel());
         root.addChannel(trueChannelName + "/read", generateCRUDRead());
     }
+    
+    /**
+     * Finish the builder by returning the AsyncAPI object.
+     * 
+     * @return AsyncAPI
+     */
     public AsyncAPI finish() {
         finishCrud();
         return parent.finish();

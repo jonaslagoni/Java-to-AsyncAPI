@@ -28,6 +28,11 @@ public class MessageJsonSchemaBuilder extends JsonSchemaBuilder<MessageJsonSchem
         return parent;
     }
 
+    /**
+     * Finish the builder by returning the AsyncAPI object.
+     * 
+     * @return AsyncAPI
+     */
     public AsyncAPI finish() {
         message.setPayload(this.build());
         return parent.finish();

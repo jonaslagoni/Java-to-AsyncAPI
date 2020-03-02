@@ -25,6 +25,11 @@ public class CrudJsonSchemaBuilder extends JsonSchemaBuilder<CrudJsonSchemaBuild
         return parent;
     }
 
+    /**
+     * Finish the builder by returning the AsyncAPI object.
+     * 
+     * @return AsyncAPI
+     */
     public AsyncAPI finish() {
         return parent.finish();
     }

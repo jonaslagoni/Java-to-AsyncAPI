@@ -10,6 +10,7 @@ import com.asyncapi.internal_dsl.model.Channel;
 import com.asyncapi.internal_dsl.model.Info;
 import com.asyncapi.internal_dsl.model.License;
 import com.asyncapi.internal_dsl.model.Server;
+import com.asyncapi.internal_dsl.model.Version;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +28,15 @@ public class AsyncAPIBuilder {
         cruds = new HashMap();
     }
 
+    public AsyncAPIBuilder asyncapi(Version version){
+        root.setAsyncapi(version);
+        return this;
+    }
+    /**
+     * Start building the info section
+     * 
+     * @return InfoBuilder
+     */
     public InfoBuilder info() {
         Info infoInstance;
         if (root.getInfo() != null) {
@@ -38,17 +48,13 @@ public class AsyncAPIBuilder {
         return new InfoBuilder(this, infoInstance);
     }
 
-    public LicenseBuilder license() {
-        License licenseInstance;
-        if (root.getLicense() != null) {
-            licenseInstance = root.getLicense();
-        } else {
-            licenseInstance = new License();
-            root.setLicense(licenseInstance);
-        }
-        return new LicenseBuilder(this, licenseInstance);
-    }
 
+    /**
+     * Start building a specific server section
+     * 
+     * @param name the name of the server to build
+     * @return ServerBuilder
+     */
     public ServerBuilder server(String name) {
         Server serverInstance;
         if (root.getServers() != null && root.getServers().containsKey(name)) {
@@ -60,6 +66,12 @@ public class AsyncAPIBuilder {
         return new ServerBuilder(this, serverInstance);
     }
 
+    /**
+     * Start building a specific channel section
+     * 
+     * @param channelName the name of the channel we are building.
+     * @return ChannelBuilder
+     */
     public ChannelBuilder channel(String channelName) {
         Channel channelInstance;
         if (root.getChannels()!= null && root.getChannels().containsKey(channelName)) {
@@ -71,6 +83,12 @@ public class AsyncAPIBuilder {
         return new ChannelBuilder(this, channelInstance);
     }
 
+    /**
+     * Start building a CRUD operation
+     * 
+     * @param channelName the channel name to use as base name for the CRUD operation. 
+     * @return CrudBuilder
+     */
     public CrudBuilder crud(String channelName) {
         if (cruds.containsKey(channelName)) {
             return cruds.get(channelName);
@@ -81,6 +99,11 @@ public class AsyncAPIBuilder {
         }
     }
 
+    /**
+     * Finish the builder by returning the AsyncAPI object.
+     * 
+     * @return AsyncAPI
+     */
     public AsyncAPI finish() {
         return root;
     }

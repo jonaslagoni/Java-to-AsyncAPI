@@ -23,11 +23,22 @@ public class ChannelBuilder {
         this.channel = channel;
     }
 
+    /**
+     * Set the description for this channel.
+     * 
+     * @param description the string to use as description
+     * @return the same instance of ChannelBuilder.
+     */
     public ChannelBuilder description(String description) {
         channel.setDescription(description);
         return this;
     }
 
+    /**
+     * Start building the subscribe operation.
+     * 
+     * @return OperationBuilder
+     */
     public OperationBuilder subscribe() {
         Operation newOperation = channel.getSubscribe();
         if (newOperation == null) {
@@ -37,6 +48,11 @@ public class ChannelBuilder {
         return new OperationBuilder(this, newOperation);
     }
 
+    /**
+     * Start building the publish operation.
+     * 
+     * @return OperationBuilder
+     */
     public OperationBuilder publish() {
         Operation newOperation = channel.getPublish();
         if (newOperation == null) {
@@ -46,10 +62,19 @@ public class ChannelBuilder {
         return new OperationBuilder(this, newOperation);
     }
 
+    /**
+     * Return to the parent AsyncAPIBuilder
+     * @return AsyncAPIBuilder
+     */
     public AsyncAPIBuilder parent() {
         return parent;
     }
 
+    /**
+     * Finish the builder by returning the AsyncAPI object.
+     * 
+     * @return AsyncAPI
+     */
     public AsyncAPI finish() {
         return parent.finish();
     }

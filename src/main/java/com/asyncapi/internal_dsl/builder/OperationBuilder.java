@@ -33,21 +33,41 @@ public class OperationBuilder {
         return this;
     }
 
+    /**
+     * Set the 
+     * @param operationId
+     * @return 
+     */
     public OperationBuilder operationId(String operationId) {
         operation.setOperationId(operationId);
         return this;
     }
 
+    /**
+     * Start building the message section for this operation.
+     * 
+     * @return MessageBuilder
+     */
     public MessageBuilder message() {
         Message newMessage = new Message();
         operation.setMessage(newMessage);
         return new MessageBuilder(this, newMessage);
     }
 
+    /**
+     * Return to the parent ChannelBuilder builder.
+     * 
+     * @return ChannelBuilder the parent. 
+     */
     public ChannelBuilder parent() {
         return parent;
     }
 
+    /**
+     * Finish the builder by returning the AsyncAPI object.
+     * 
+     * @return AsyncAPI
+     */
     public AsyncAPI finish() {
         return parent.finish();
     }
