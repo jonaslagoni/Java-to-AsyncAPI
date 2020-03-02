@@ -142,7 +142,7 @@ public class CrudBuilder {
     }
     private Channel generateBaseChannel(){
         Message message = new Message();
-        if(informed){
+        if(this.informed || this.reverse){
             message.setPayload(body.build());
         }else{
             JsonSchemaBuilder b = new JsonSchemaBuilder();
@@ -153,9 +153,9 @@ public class CrudBuilder {
         
         Channel channel = new Channel();
         if(this.reverse){
-            channel.setSubscribe(operation);
-        }else{
             channel.setPublish(operation);
+        }else{
+            channel.setSubscribe(operation);
         }
         
         for(Map.Entry<String, CrudJsonSchemaBuilder> entry : parameters.entrySet()){
@@ -170,22 +170,22 @@ public class CrudBuilder {
         
         Message message = new Message();
         message.setPayload(body.build());
-        Operation publishOperation = new Operation();
-        publishOperation.setMessage(message);
+        Operation subscribeOperation = new Operation();
+        subscribeOperation.setMessage(message);
         
-        Message responseMessage = new Message();
+        Message requestMessage = new Message();
         JsonSchemaBuilder b = new JsonSchemaBuilder();
-        responseMessage.setPayload(b.nullSchema().build());
-        Operation responseOperation = new Operation();
-        responseOperation.setMessage(responseMessage);
+        requestMessage.setPayload(b.nullSchema().build());
+        Operation requestOperation = new Operation();
+        requestOperation.setMessage(requestMessage);
         
         Channel channel = new Channel();
         if(this.reverse){
-            channel.setPublish(responseOperation);
-            channel.setSubscribe(publishOperation);
+            channel.setPublish(subscribeOperation);
+            channel.setSubscribe(requestOperation);
         }else{
-            channel.setPublish(publishOperation);
-            channel.setSubscribe(responseOperation);
+            channel.setPublish(requestOperation);
+            channel.setSubscribe(subscribeOperation);
         }
         
         for(Map.Entry<String, CrudJsonSchemaBuilder> entry : parameters.entrySet()){
