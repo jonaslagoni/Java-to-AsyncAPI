@@ -62,7 +62,7 @@ public class AsyncAPIBuilder {
 
     public ChannelBuilder channel(String channelName) {
         Channel channelInstance;
-        if (root.getServers() != null && root.getChannels().containsKey(channelName)) {
+        if (root.getChannels()!= null && root.getChannels().containsKey(channelName)) {
             channelInstance = root.getChannels().get(channelName);
         } else {
             channelInstance = new Channel();
@@ -75,7 +75,7 @@ public class AsyncAPIBuilder {
         if (cruds.containsKey(channelName)) {
             return cruds.get(channelName);
         } else {
-            CrudBuilder b = new CrudBuilder(this, root);
+            CrudBuilder b = new CrudBuilder(this, root, channelName);
             cruds.put(channelName, b);
             return b;
         }

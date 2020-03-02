@@ -19,6 +19,7 @@ public class LicenseBuilder {
 
     public LicenseBuilder(AsyncAPIBuilder parent, License license) {
         this.license = license;
+        this.parent = parent;
     }
 
     public LicenseBuilder name(String name) {

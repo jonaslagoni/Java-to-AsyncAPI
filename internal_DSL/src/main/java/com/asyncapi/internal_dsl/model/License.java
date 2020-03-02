@@ -5,10 +5,13 @@
  */
 package com.asyncapi.internal_dsl.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 /**
  *
  * @author Lagoni
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class License {
 
     private String name;

@@ -6,6 +6,8 @@
 package com.asyncapi.internal_dsl;
 
 import com.asyncapi.internal_dsl.builder.AsyncAPIBuilder;
+import com.asyncapi.internal_dsl.model.AsyncAPI;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.json_schema.builder.model.draft7.SimpleType;
 import com.json_schema.builder.model.draft7.StringFormat;
 
@@ -18,31 +20,26 @@ public class CrudReverse {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JsonProcessingException {
         // TODO code application logic here'
-        new AsyncAPIBuilder().
+        AsyncAPI as = new AsyncAPIBuilder().
                 info().
                 title("Streetlights API").
                 version("1.0.0").
                 description("The Smartylighting Streetlights API allows you to remotely manage the city lights.").parent().
+                license().
+                name("Apache 2.0").
+                url("https://www.apache.org/licenses/LICENSE-2.0").parent().
                 server("mosquitto").
                 url("mqtt://test.mosquitto.org").
                 protocol("mqtt").parent().
-                channel("light/measured").
-                publish().
-                summary("Inform about environmental lighting conditions for a particular streetlight.").
-                operationId("onLightMeasured").message().
-                payload().
-                object().
-                property("id", SimpleType.INTEGER).
+                crud("user").parameter("id").integer().
                 minimum(0).
-                description("Id of the streetlight.").parent().
-                property("lumens", SimpleType.INTEGER).
-                minimum(0).
-                description("Light intensity measured in lumens.").
-                property("sentAt", SimpleType.STRING).
-                format(StringFormat.DATE_TIME).
-                description("Date and time when the message was sent.");
+                description("Id of the user.").crudParent()
+                .body().object().title("user").property("name", SimpleType.STRING).
+                description("Name of the user").property("joined_date", SimpleType.STRING).format(StringFormat.DATE_TIME).
+                description("The date-time the user joined.").crudParent().reverse(true).finish();
+        System.out.println(as.toJson());
     }
 
 }

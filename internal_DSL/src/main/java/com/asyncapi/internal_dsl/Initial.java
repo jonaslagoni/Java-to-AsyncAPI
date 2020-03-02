@@ -7,6 +7,7 @@ package com.asyncapi.internal_dsl;
 
 import com.asyncapi.internal_dsl.builder.AsyncAPIBuilder;
 import com.asyncapi.internal_dsl.model.AsyncAPI;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.json_schema.builder.model.draft7.SimpleType;
 import com.json_schema.builder.model.draft7.StringFormat;
 
@@ -19,7 +20,7 @@ public class Initial {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JsonProcessingException {
         // TODO code application logic here'
         AsyncAPI api = new AsyncAPIBuilder().
                 info().
@@ -48,6 +49,7 @@ public class Initial {
                 property("sentAt", SimpleType.STRING).
                 format(StringFormat.DATE_TIME).
                 description("Date and time when the message was sent.").finish();
+        System.out.println(api.toJson());
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package com.asyncapi.internal_dsl.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +13,8 @@ import java.util.Map;
  *
  * @author lagoni
  */
-public class Channel {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class Channel{
 
     private String description;
     private Map<String, Parameter> parameters;

@@ -6,6 +6,8 @@
 package com.asyncapi.internal_dsl.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +24,12 @@ public class AsyncAPI {
     private Map<String, Channel> channels;
     private Map<String, Server> servers;
 
+    public String toJson() throws JsonProcessingException {
+        // Creating Object of ObjectMapper define in Jakson Api
+        ObjectMapper Obj = new ObjectMapper();
+        return Obj.writeValueAsString(this);
+    }
+    
     /**
      * @return the asyncapi
      */

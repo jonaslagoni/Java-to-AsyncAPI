@@ -32,6 +32,7 @@ public class ChannelBuilder {
         Operation newOperation = channel.getSubscribe();
         if (newOperation == null) {
             newOperation = new Operation();
+            channel.setSubscribe(newOperation);
         }
         return new OperationBuilder(this, newOperation);
     }
@@ -40,6 +41,7 @@ public class ChannelBuilder {
         Operation newOperation = channel.getPublish();
         if (newOperation == null) {
             newOperation = new Operation();
+            channel.setPublish(newOperation);
         }
         return new OperationBuilder(this, newOperation);
     }

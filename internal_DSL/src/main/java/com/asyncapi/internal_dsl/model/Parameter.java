@@ -5,12 +5,14 @@
  */
 package com.asyncapi.internal_dsl.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.json_schema.builder.model.draft7.Schema;
 
 /**
  *
  * @author Lagoni
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Parameter {
 
     private String description;

@@ -5,10 +5,13 @@
  */
 package com.asyncapi.internal_dsl.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 /**
  *
  * @author lagoni
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Operation {
 
     private Message message;

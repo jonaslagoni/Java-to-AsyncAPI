@@ -16,22 +16,16 @@ import com.json_schema.builder.model.draft7.Schema;
 public class CrudJsonSchemaBuilder extends JsonSchemaBuilder<CrudJsonSchemaBuilder> {
 
     private CrudBuilder parent;
-    private AsyncAPI root;
 
-    public CrudJsonSchemaBuilder(CrudBuilder parent, AsyncAPI root) {
+    public CrudJsonSchemaBuilder(CrudBuilder parent) {
         this.parent = parent;
-        this.root = root;
     }
 
     public CrudBuilder crudParent() {
-        Schema rootSchema = this.build();
-
         return parent;
     }
 
     public AsyncAPI finish() {
-        Schema rootSchema = this.build();
-
         return parent.finish();
     }
 
