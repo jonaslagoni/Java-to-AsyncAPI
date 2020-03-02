@@ -128,7 +128,7 @@ new AsyncAPIBuilder().
     channel("light/measured").//Continues with ChannelBuilder
 ```
 ### Parent
-The `parent()` method are used to move the pointer of the active builder 1 up. Meaning that if you are currently defining the info section, when you are finished and want to continue with the parrent `AsyncAPIBuilder` call `.parent()`.
+The `parent()` method are used to move the pointer of the active builder 1 up. Meaning that if you are currently defining the info section, when you are finished and want to continue with the parent `AsyncAPIBuilder` call `.parent()`.
 
 ### To JSON
 Through the AsyncAPI object you can call `toJson()` to return the JSON string representation of the AsyncAPI document.
