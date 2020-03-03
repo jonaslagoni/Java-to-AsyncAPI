@@ -41,22 +41,29 @@ public class CrudReverse {
     public static void main(String[] args) throws JsonProcessingException {
         // TODO code application logic here'
         AsyncAPI as = new AsyncAPIBuilder().
-                info().
+            info().
                 title("Streetlights API").
                 version("1.0.0").
                 license().
-                name("Apache 2.0").
-                url("https://www.apache.org/licenses/LICENSE-2.0").parent().
+                    name("Apache 2.0").
+                    url("https://www.apache.org/licenses/LICENSE-2.0").parent().
                 description("The Smartylighting Streetlights API allows you to remotely manage the city lights.").parent().
-                server("mosquitto").
+            server("mosquitto").
                 url("mqtt://test.mosquitto.org").
                 protocol("mqtt").parent().
-                crud("user").parameter("id").integer().
-                minimum(0).
-                description("Id of the user.").crudParent()
-                .body().object().title("user").property("name", SimpleType.STRING).
-                description("Name of the user").property("joined_date", SimpleType.STRING).format(StringFormat.DATE_TIME).
-                description("The date-time the user joined.").crudParent().reverse(true).finish();
+            crud("user").
+                parameter("id").
+                    integer().
+                        minimum(0).
+                        description("Id of the user.").crudParent().
+                body().
+                    object().
+                        title("user").
+                        property("name", SimpleType.STRING).
+                            description("Name of the user").parent().
+                        property("joined_date", SimpleType.STRING).
+                            format(StringFormat.DATE_TIME).
+                            description("The date-time the user joined.").crudParent().reverse(true).finish();
         System.out.println(as.toJson());
     }
 
